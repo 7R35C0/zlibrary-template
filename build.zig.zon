@@ -1,0 +1,35 @@
+.{
+    .name = "zlibrary",
+    .version = "0.1.0",
+    //.minimum_zig_version = "0.12.0",
+
+    .dependencies = .{
+        // The `ztracy` dependency is only used in benchmarks
+        //
+        // Recommended release for `ztracy`.
+        .ztracy = .{
+            .url = "https://github.com/7R35C0/ztracy/releases/download/ztracy-0.11.0/ztracy-0.11.0.tar.gz",
+            .hash = "1220d02ebfd349a43c7ddf450bc0f548339b502aa4d77dc37e8bf5d6fc8f1b7f871e",
+            //    .path = "foo",
+            //    .lazy = false,
+        },
+        //
+        // Fix release for `CPU doesn't support invariant TSC` message.
+        // .ztracy = .{
+        //     .url = "https://github.com/7R35C0/ztracy-tsc/releases/download/ztracy-tsc-0.11.0/ztracy-tsc-0.11.0.tar.gz",
+        //     .hash = "1220a140f6693a218f9f0ec0542ea56f92d0f42266cec6c2469a4c29e887defb0b86",
+        //     //    .path = "foo",
+        //     //    .lazy = false,
+        // },
+    },
+
+    .paths = .{
+        "bms",
+        "egs",
+        "src",
+        "build.zig",
+        "build.zig.zon",
+        "LICENSE",
+        "README.md",
+    },
+}
