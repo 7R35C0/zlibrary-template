@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Benchmark debug",
+            "program": "${workspaceFolder}/zig-out/bms/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Debug - Run current benchmark"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Example debug",
+            "program": "${workspaceFolder}/zig-out/egs/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Debug - Run current example"
+        },
+    ]
+}

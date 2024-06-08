@@ -1,0 +1,149 @@
+//
+// Important
+//
+// Some tasks require a file open and active in the VS Code editor
+//
+{
+    "version": "2.0.0",
+    "type": "shell",
+    "presentation": {
+        "showReuseMessage": false,
+    },
+    "tasks": [
+        {
+            "label": "Debug - Build static library",
+            "detail": "outputs: zig-out/lib",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "case ${relativeFileDirname} in src) zig build lib && echo \"Task done, outputs: zig-out/lib\";; *) echo \"Task fail: The active file in editor is not a zig file or is not in 'src' folder\";; esac",
+        },
+        {
+            "label": "Debug - Run all tests",
+            "detail": "outputs: none",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "case ${relativeFileDirname} in src) zig build tst && echo \"Task done, outputs: none\";; *) echo \"Task fail: The active file in editor is not a zig file or is not in 'src' folder\";; esac",
+        },
+        {
+            "label": "Debug - Run benchmark",
+            "detail": "outputs: zig-out/bms",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "case ${relativeFileDirname} in bms/*) zig build bms-run -Ddirname=$(basename ${relativeFileDirname}) && echo \"Task done, outputs: zig-out/bms\";; *) echo \"Task fail: The active file in editor is not a zig file or is not in 'bms' folder\";; esac",
+        },
+        {
+            "label": "Debug - Run example",
+            "detail": "outputs: zig-out/egs",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "case ${relativeFileDirname} in egs/*) zig build egs-run -Ddirname=$(basename ${relativeFileDirname}) && echo \"Task done, outputs: zig-out/egs\";; *) echo \"Task fail: The active file in editor is not a zig file or is not in 'egs' folder\";; esac",
+        },
+        {
+            "label": "Debug - Build all benchmarks",
+            "detail": "outputs: zig-out/bms",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "zig build bms && echo \"Task done, outputs: zig-out/bms\"",
+        },
+        {
+            "label": "Debug - Build all examples",
+            "detail": "outputs: zig-out/egs",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "zig build egs && echo \"Task done, outputs: zig-out/egs\"",
+        },
+        {
+            "label": "Release - Build static library",
+            "detail": "outputs: zig-out/lib",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "case ${relativeFileDirname} in src) zig build lib -Doptimize=ReleaseFast && echo \"Task done, outputs: zig-out/lib\";; *) echo \"Task fail: The active file in editor is not a zig file or is not in 'src' folder\";; esac",
+        },
+        {
+            "label": "Release - Run benchmark",
+            "detail": "outputs: zig-out/bms",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "case ${relativeFileDirname} in bms/*) zig build bms-run -Ddirname=$(basename ${relativeFileDirname}) -Doptimize=ReleaseFast && echo \"Task done, outputs: zig-out/bms\";; *) echo \"Task fail: The active file in editor is not a zig file or is not in 'bms' folder\";; esac",
+        },
+        {
+            "label": "Release - Run example",
+            "detail": "outputs: zig-out/egs",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "case ${relativeFileDirname} in egs/*) zig build egs-run -Ddirname=$(basename ${relativeFileDirname}) -Doptimize=ReleaseFast && echo \"Task done, outputs: zig-out/egs\";; *) echo \"Task fail: The active file in editor is not a zig file or is not in 'egs' folder\";; esac",
+        },
+        {
+            "label": "Release - Build all benchmarks",
+            "detail": "outputs: zig-out/bms",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "zig build bms -Doptimize=ReleaseFast && echo \"Task done, outputs: zig-out/bms\"",
+        },
+        {
+            "label": "Release - Build all examples",
+            "detail": "outputs: zig-out/egs",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "zig build egs -Doptimize=ReleaseFast && echo \"Task done, outputs: zig-out/egs\"",
+        },
+        {
+            "label": "Run build file",
+            "detail": "outputs: none",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "zig build -l && echo \"Task done, outputs: none\"",
+        },
+        {
+            "label": "Generate code coverage",
+            "detail": "outputs: zig-out/cov",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "command": "zig build cov && echo \"Task done, outputs: zig-out/cov\"",
+        },
+        {
+            "label": "Generate documentation",
+            "detail": "outputs: zig-out/doc",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "command": "zig build doc && echo \"Task done, outputs: zig-out/doc\"",
+        },
+        {
+            "label": "Format all files",
+            "detail": "outputs: none",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "command": "zig build fmt && echo \"Task done, outputs: none\"",
+        }
+    ]
+}
